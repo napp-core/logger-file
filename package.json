@@ -1,6 +1,6 @@
 {
   "name": "@napp/logger-file",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "napp logger. log write to file",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
