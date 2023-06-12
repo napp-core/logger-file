@@ -6,7 +6,7 @@ Napp logger. log to write file
 npm i @napp/logger-file
 ```
 
-# usa
+# use
 
 ``` typescript
 import { LogLevel, LogManager, sampleLogWriter } from "@napp/logger";
