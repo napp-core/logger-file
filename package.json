@@ -31,7 +31,8 @@
     "log-write"
   ],
   "dependencies": {
-    "@napp/logger": "^3.2.6",
-    "file-stream-rotator": "^1.0.0"
+    "@napp/logger": "^3.3.1",
+    "file-stream-rotator": "^1.0.0",
+    "flatted": "^3.2.9"
   }
 }

@@ -1,6 +1,6 @@
 import { ILogItem, ILogWriter, LogLevel } from "@napp/logger"
 import * as FileStreamRotator from 'file-stream-rotator'
-
+import * as JSON from 'flatted';
 export type FileOptions = {
     flags?: string
     encoding?: string
@@ -74,7 +74,7 @@ export function logWriter2file(opt: OWriter2file): ILogWriter {
 
     let writer: ILogWriter = (l: ILogItem) => {
 
-        let row1 = `[${new Date(l.timestamp).toLocaleString()}] [${LogLevel[l.level]}] [${l.logname}] [${(l.tags || []).map(it => '#' + it).join(', ') || ''}] [${l.track || ''}]`;
+        let row1 = `[${new Date(l.timestamp).toLocaleString()}] [${LogLevel[l.level]}] [${l.logname}]`;
         let row2 = `${l.message}`;
         let row3 = '';
         if (l.attrs) {
@@ -85,20 +85,12 @@ export function logWriter2file(opt: OWriter2file): ILogWriter {
             }
         }
 
-        let row4 = [];
-        if (Array.isArray(l.errors) && l.errors.length > 0) {
-            for (let e of l.errors) {
-                row4.push('' + e)
-                if (e.stack) {
-                    row4.push(e.stack)
-                }
-            }
-        }
 
-        let logrow = [row1, row2, row3, ...row4, ''].join("\r\n");
+
+        let logrow = [row1, row2, row3, ''].join("\r\n");
 
         try {
-            stream.write(logrow)
+            stream.write(logrow);
         } catch (error) {
             console.error(error);
         }
